@@ -1,6 +1,10 @@
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using FleetManager.Pages;
+using FleetManager.Models;
+
 [Authorize]
 public class IndexModel : PageModel
 {
@@ -15,7 +19,15 @@ public class IndexModel : PageModel
 
     public async Task OnGetAsync()
     {
-        Vehiculos = await _context.Vehiculos.ToListAsync();
+        try
+        {
+            Vehiculos = await _context.Vehiculos.ToListAsync();
+        }
+        catch (Exception ex)
+        {
+            // Manejar la excepción, por ejemplo, registrar el error o mostrar un mensaje al usuario
+            Console.Error.WriteLine("Error al obtener los vehículos: " + ex.Message);
+            Vehiculos = new List<Vehiculo>(); // Asignar una lista vacía para evitar errores en la vista
+        }
     }
 }
-

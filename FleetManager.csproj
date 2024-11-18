@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Pages\Asignacion\" />
     <Folder Include="Pages\Conductor\" />
     <Folder Include="Pages\Mantenimiento\" />
     <Folder Include="Pages\RegistroUso\" />
