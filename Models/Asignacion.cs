@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using FleetManager.Data;
+
 
 public class Asignacion
 {

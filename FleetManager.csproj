@@ -20,4 +20,10 @@
     <PackageReference Include="Rollbar.AppSettings.Json" Version="5.2.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\Conductor\" />
+    <Folder Include="Pages\Mantenimiento\" />
+    <Folder Include="Pages\RegistroUso\" />
+  </ItemGroup>
+
 </Project>
