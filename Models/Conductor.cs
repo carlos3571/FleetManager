@@ -1,26 +1,29 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-
-public class Conductor
+namespace FleetManager.Models
 {
-    [Key]
-    public int IdConductor { get; set; }
+    public class Conductor
+    {
+        public int IdConductor { get; set; }
 
-    [Required(ErrorMessage = "El nombre es obligatorio.")]
-    [MaxLength(50)]
-    public string Nombre { get; set; }
+        [Required(ErrorMessage = "El nombre es obligatorio.")]
+        [StringLength(50, ErrorMessage = "El nombre no puede exceder 50 caracteres.")]
+        public string Nombre { get; set; }
 
-    [Required(ErrorMessage = "El apellido es obligatorio.")]
-    [MaxLength(50)]
-    public string Apellido { get; set; }
+        [Required(ErrorMessage = "El apellido es obligatorio.")]
+        [StringLength(50, ErrorMessage = "El apellido no puede exceder 50 caracteres.")]
+        public string Apellido { get; set; }
 
-    [Required(ErrorMessage = "El número de licencia es obligatorio.")]
-    [MaxLength(20)]
-    public string LicenciaConduccion { get; set; }
+        [Required(ErrorMessage = "La licencia de conducción es obligatoria.")]
+        public string LicenciaConduccion { get; set; }
 
-    [Phone(ErrorMessage = "El teléfono debe tener un formato válido.")]
-    public int Telefono { get; set; }
+        [Phone(ErrorMessage = "El número de teléfono no es válido.")]
+        public string Telefono { get; set; }
 
-    [MaxLength(100)]
-    public string Direccion { get; set; }
+        public string Direccion { get; set; }
+
+        public ICollection<Asignacion> Asignaciones { get; set; }
+    }
+}
+
 }

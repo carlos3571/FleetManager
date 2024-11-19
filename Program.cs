@@ -11,6 +11,9 @@ builder.Services.AddDbContext<FleetManagerContext>(options =>
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
+app.UseAuthentication();
+app.UseAuthorization();
+
 
 // Configuración de middleware
 if (!app.Environment.IsDevelopment())

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-
+namespace FleetManager.Models;
 
 public class Asignacion
 {
@@ -17,6 +17,8 @@ public class Asignacion
     public DateTime FechaInicio { get; set; }
 
     public DateTime? FechaFin { get; set; } // Fecha fin puede ser opcional.
+    public object Vehiculo { get; internal set; }
+    public object Conductor { get; internal set; }
 
     //IdVehiculo y IdConductor representan relaciones con las tablas respectivas.
 }

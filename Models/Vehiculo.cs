@@ -1,14 +1,27 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-
-public class Vehiculo
+namespace FleetManager.Models
 {
-    [Key]
-    public int IdVehiculo { get; set; }
-    [Required]
-    public string Placa { get; set; }
-    public string Marca { get; set; }
-    public string Modelo { get; set; }
-    public int Año { get; set; }
-    public int Kilometraje { get; set; }
+    public class Vehiculo
+    {
+        public int IdVehiculo { get; set; }
+
+        [Required(ErrorMessage = "La placa es obligatoria.")]
+        [StringLength(10, ErrorMessage = "La placa no puede exceder 10 caracteres.")]
+        public string Placa { get; set; }
+
+        [Required(ErrorMessage = "La marca es obligatoria.")]
+        public string Marca { get; set; }
+
+        [Required(ErrorMessage = "El modelo es obligatorio.")]
+        public string Modelo { get; set; }
+
+        [Range(1900, 2100, ErrorMessage = "El año debe estar entre 1900 y 2100.")]
+        public int Año { get; set; }
+
+        [Range(0, int.MaxValue, ErrorMessage = "El kilometraje no puede ser negativo.")]
+        public int Kilometraje { get; set; }
+    }
 }
+
+
