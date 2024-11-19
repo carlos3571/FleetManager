@@ -1,0 +1,40 @@
+﻿@page
+@model FleetManager.Pages.Conductor.Index1Model
+
+
+@{
+    ViewData["Title"] = "Agregar Conductor";
+}
+
+<h1>Agregar Conductor</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Conductor.Nombre" class="control-label"></label>
+        <input asp-for="Conductor.Nombre" class="form-control" />
+        <span asp-validation-for="Conductor.Nombre" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Conductor.Apellido" class="control-label"></label>
+        <input asp-for="Conductor.Apellido" class="form-control" />
+        <span asp-validation-for="Conductor.Apellido" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Conductor.LicenciaConduccion" class="control-label"></label>
+        <input asp-for="Conductor.LicenciaConduccion" class="form-control" />
+        <span asp-validation-for="Conductor.LicenciaConduccion" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Conductor.Telefono" class="control-label"></label>
+        <input asp-for="Conductor.Telefono" class="form-control" />
+        <span asp-validation-for="Conductor.Telefono" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Conductor.Direccion" class="control-label"></label>
+        <input asp-for="Conductor.Direccion" class="form-control" />
+        <span asp-validation-for="Conductor.Direccion" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a asp-page="Index" class="btn btn-secondary">Cancelar</a>
+</form>
+

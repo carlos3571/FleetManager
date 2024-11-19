@@ -1,0 +1,40 @@
+﻿@page
+@model FleetManager.Pages.Conductores.IndexModel
+@{
+    ViewData["Title"] = "Lista de Conductores";
+}
+
+<h1>Lista de Conductores</h1>
+
+<p>
+    <a class="btn btn-primary" asp-page="Create">Agregar Nuevo Conductor</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Licencia</th>
+            <th>Teléfono</th>
+            <th>Dirección</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var conductor in Model.Conductores)
+        {
+            <tr>
+                <td>@conductor.Nombre</td>
+                <td>@conductor.Apellido</td>
+                <td>@conductor.LicenciaConduccion</td>
+                <td>@conductor.Telefono</td>
+                <td>@conductor.Direccion</td>
+                <td>
+                    <a asp-page="Edit" asp-route-id="@conductor.IdConductor" class="btn btn-warning">Editar</a>
+                    <a asp-page="Delete" asp-route-id="@conductor.IdConductor" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

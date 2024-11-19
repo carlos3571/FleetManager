@@ -1,0 +1,28 @@
+﻿@page
+@model FleetManager.Pages.Conductor.DeleteModel
+@{
+    ViewData["Title"] = "Eliminar Conductor";
+}
+
+<h1>Eliminar Conductor</h1>
+
+<h4>¿Estás seguro de que deseas eliminar este conductor?</h4>
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">Nombre</dt>
+        <dd class="col-sm-10">@Model.Conductor.Nombre</dd>
+        <dt class="col-sm-2">Apellido</dt>
+        <dd class="col-sm-10">@Model.Conductor.Apellido</dd>
+        <dt class="col-sm-2">Licencia</dt>
+        <dd class="col-sm-10">@Model.Conductor.LicenciaConduccion</dd>
+        <dt class="col-sm-2">Teléfono</dt>
+        <dd class="col-sm-10">@Model.Conductor.Telefono</dd>
+        <dt class="col-sm-2">Dirección</dt>
+        <dd class="col-sm-10">@Model.Conductor.Direccion</dd>
+    </dl>
+</div>
+
+<form method="post">
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-page="Index" class="btn btn-secondary">Cancelar</a>
+</form>
