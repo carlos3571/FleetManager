@@ -1,0 +1,16 @@
+﻿@page
+@model FleetManager.Pages.Asignacion.DeleteModel
+
+@{
+    ViewData["Title"] = "Eliminar Asignación";
+}
+
+<h1>Eliminar Asignación</h1>
+
+<p>¿Estás seguro que deseas eliminar esta asignación?</p>
+
+<form method="post">
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-page="./Index" class="btn btn-secondary">Cancelar</a>
+</form>
+

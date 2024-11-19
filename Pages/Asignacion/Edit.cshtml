@@ -1,0 +1,37 @@
+﻿@page
+@model FleetManager.Pages.Asignacion.EditModel
+
+
+@{
+    ViewData["Title"] = "Editar Asignación";
+}
+
+<h1>Editar Asignación</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="Asignacion.IdAsignacion" />
+    <div class="form-group">
+        <label for="IdVehiculo">Vehículo</label>
+        <input type="number" asp-for="Asignacion.IdVehiculo" class="form-control" />
+        <span asp-validation-for="Asignacion.IdVehiculo" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="IdConductor">Conductor</label>
+        <input type="number" asp-for="Asignacion.IdConductor" class="form-control" />
+        <span asp-validation-for="Asignacion.IdConductor" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="FechaInicio">Fecha de Inicio</label>
+        <input type="date" asp-for="Asignacion.FechaInicio" class="form-control" />
+        <span asp-validation-for="Asignacion.FechaInicio" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="FechaFin">Fecha de Fin</label>
+        <input type="date" asp-for="Asignacion.FechaFin" class="form-control" />
+        <span asp-validation-for="Asignacion.FechaFin" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a asp-page="./Index" class="btn btn-secondary">Cancelar</a>
+</form>
+
+
