@@ -1,0 +1,32 @@
+﻿@page "{id:int}"
+@model FleetManager.Pages.RegistrosUso.EditModel
+@{
+    ViewData["Title"] = "Editar Registro de Uso";
+}
+
+<h1>Editar Registro de Uso</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="RegistroUso.IdVehiculo" class="control-label">Vehículo</label>
+        <select asp-for="RegistroUso.IdVehiculo" asp-items="Model.Vehiculos" class="form-control"></select>
+        <span asp-validation-for="RegistroUso.IdVehiculo" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="RegistroUso.Fecha" class="control-label"></label>
+        <input asp-for="RegistroUso.Fecha" type="date" class="form-control" />
+        <span asp-validation-for="RegistroUso.Fecha" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="RegistroUso.KilometrajeInicio" class="control-label"></label>
+        <input asp-for="RegistroUso.KilometrajeInicio" type="number" class="form-control" />
+        <span asp-validation-for="RegistroUso.KilometrajeInicio" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="RegistroUso.KilometrajeFin" class="control-label"></label>
+        <input asp-for="RegistroUso.KilometrajeFin" type="number" class="form-control" />
+        <span asp-validation-for="RegistroUso.KilometrajeFin" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+    <a asp-page="Index" class="btn btn-secondary">Cancelar</a>
+</form>

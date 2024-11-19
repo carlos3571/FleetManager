@@ -1,0 +1,38 @@
+﻿@page
+@model FleetManager.Pages.RegistrosUso.IndexModel
+@{
+    ViewData["Title"] = "Lista de Registros de Uso";
+}
+
+<h1>Lista de Registros de Uso</h1>
+
+<p>
+    <a class="btn btn-primary" asp-page="Create">Agregar Nuevo Registro</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Vehículo</th>
+            <th>Fecha</th>
+            <th>Kilometraje Inicio</th>
+            <th>Kilometraje Fin</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var registro in Model.RegistrosUso)
+        {
+            <tr>
+                <td>@registro.Vehiculo.Placa</td>
+                <td>@registro.Fecha.ToShortDateString()</td>
+                <td>@registro.KilometrajeInicio</td>
+                <td>@registro.KilometrajeFin</td>
+                <td>
+                    <a asp-page="Edit" asp-route-id="@registro.IdRegistro" class="btn btn-warning">Editar</a>
+                    <a asp-page="Delete" asp-route-id="@registro.IdRegistro" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
