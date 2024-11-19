@@ -1,4 +1,26 @@
 ﻿@page
-@model FleetManager.Pages.Mantenimiento.DeleteModel
+@model FleetManager.Pages.Mantenimientos.DeleteModel
 @{
+    ViewData["Title"] = "Eliminar Mantenimiento";
 }
+
+<h1>Eliminar Mantenimiento</h1>
+
+<h4>¿Estás seguro de que deseas eliminar este mantenimiento?</h4>
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">Vehículo</dt>
+        <dd class="col-sm-10">@Model.Mantenimiento.Vehiculo.Placa</dd>
+        <dt class="col-sm-2">Fecha</dt>
+        <dd class="col-sm-10">@Model.Mantenimiento.FechaMantenimiento.ToShortDateString()</dd>
+        <dt class="col-sm-2">Descripción</dt>
+        <dd class="col-sm-10">@Model.Mantenimiento.Descripcion</dd>
+        <dt class="col-sm-2">Costo</dt>
+        <dd class="col-sm-10">@Model.Mantenimiento.Costo</dd>
+    </dl>
+</div>
+
+<form method="post">
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-page="Index" class="btn btn-secondary">Cancelar</a>
+</form>

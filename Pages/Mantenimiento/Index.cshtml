@@ -1,4 +1,41 @@
 ﻿@page
-@model FleetManager.Pages.Mantenimiento.IndexModel
+@model FleetManager.Pages.Mantenimientos.IndexModel
 @{
+    ViewData["Title"] = "Lista de Mantenimientos";
 }
+
+<h1>Lista de Mantenimientos</h1>
+
+<p>
+    <a class="btn btn-primary" asp-page="Create">Agregar Nuevo Mantenimiento</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Vehículo</th>
+            <th>Fecha</th>
+            <th>Descripción</th>
+            <th>Costo</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var mantenimiento in Model.Mantenimientos)
+        {
+            <tr>
+                <td>@mantenimiento.Vehiculo.Placa</td>
+                <td>@mantenimiento.FechaMantenimiento.ToShortDateString()</td>
+                <td>@mantenimiento.Descripcion</td>
+                <td>@mantenimiento.Costo</td>
+                <td>
+                    <a asp-page="Edit" asp-route-id="@mantenimiento.IdMantenimiento" class="btn btn-warning">Editar</a>
+                    <a asp-page="Delete" asp-route-id="@mantenimiento.IdMantenimiento" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+

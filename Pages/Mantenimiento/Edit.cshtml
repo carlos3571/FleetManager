@@ -1,4 +1,33 @@
-﻿@page
-@model FleetManager.Pages.Mantenimiento.EditModel
+﻿@page "{id:int}"
+@model FleetManager.Pages.Mantenimientos.EditModel
 @{
+    ViewData["Title"] = "Editar Mantenimiento";
 }
+
+<h1>Editar Mantenimiento</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Mantenimiento.IdVehiculo" class="control-label">Vehículo</label>
+        <select asp-for="Mantenimiento.IdVehiculo" asp-items="Model.Vehiculos" class="form-control"></select>
+        <span asp-validation-for="Mantenimiento.IdVehiculo" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Mantenimiento.FechaMantenimiento" class="control-label"></label>
+        <input asp-for="Mantenimiento.FechaMantenimiento" type="date" class="form-control" />
+        <span asp-validation-for="Mantenimiento.FechaMantenimiento" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Mantenimiento.Descripcion" class="control-label"></label>
+        <input asp-for="Mantenimiento.Descripcion" class="form-control" />
+        <span asp-validation-for="Mantenimiento.Descripcion" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Mantenimiento.Costo" class="control-label"></label>
+        <input asp-for="Mantenimiento.Costo" type="number" step="0.01" class="form-control" />
+        <span asp-validation-for="Mantenimiento.Costo" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+    <a asp-page="Index" class="btn btn-secondary">Cancelar</a>
+</form>
+
