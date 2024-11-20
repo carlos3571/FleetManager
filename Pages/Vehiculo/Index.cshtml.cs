@@ -1,15 +1,9 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-
-
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using FleetManager.Data;
 using FleetManager.Models;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 
-namespace FleetManager.Pages.Vehiculo
+namespace FleetManager.Pages.Vehiculos
 {
     public class IndexModel : PageModel
     {
@@ -19,10 +13,12 @@ namespace FleetManager.Pages.Vehiculo
         {
             _context = context;
         }
-        public IList<Pages_Vehiculo_Index> Vehiculos { get; set; }
+
+        public IList<Vehiculo> Vehiculos { get; set; } = new List<Vehiculo>();
+
         public async Task OnGetAsync()
         {
-            Vehiculos = (IList<Pages_Vehiculo_Index>)await _context.Vehiculos.ToListAsync();
+            Vehiculos = await _context.Vehiculos.ToListAsync();
         }
     }
 }
