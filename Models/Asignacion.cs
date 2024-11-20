@@ -4,6 +4,8 @@ namespace FleetManager.Models;
 
 public class Asignacion
 {
+    private object conductor;
+
     [Key]
     public int IdAsignacion { get; set; }
 
@@ -17,8 +19,22 @@ public class Asignacion
     public DateTime FechaInicio { get; set; }
 
     public DateTime? FechaFin { get; set; } // Fecha fin puede ser opcional.
-    public object Vehiculo { get; internal set; }
-    public object Conductor { get; internal set; }
+    public object? Vehiculo { get; internal set; }
+
+    public Asignacion(object? vehiculo)
+    {
+        Vehiculo = vehiculo;
+    }
+
+    public object GetConductor()
+    {
+        return conductor;
+    }
+
+    internal void SetConductor(object value)
+    {
+        conductor = value;
+    }
 
     //IdVehiculo y IdConductor representan relaciones con las tablas respectivas.
 }
