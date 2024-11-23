@@ -7,8 +7,19 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<FleetManagerContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("FleetManagerContext")));
 
+// Registrar servicios de autenticación y autorización
+builder.Services.AddAuthentication(); // Configurar la autenticación aquí si es necesaria
+builder.Services.AddAuthorization();  // Registrar la autorización
+
+// Habilitar Razor Pages
+builder.Services.AddRazorPages();
+
 var app = builder.Build();
+
 app.UseAuthentication();
 app.UseAuthorization();
-app.Run();
 
+// Habilitar la búsqueda de páginas Razor
+app.MapRazorPages();
+
+app.Run();
