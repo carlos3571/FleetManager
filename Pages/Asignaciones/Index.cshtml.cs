@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using FleetManager.Data;
-using FleetManager.Models;
+using FleetManager.Data; 
+using FleetManager.Models; 
 
 namespace FleetManager.Pages.Asignaciones
 {
