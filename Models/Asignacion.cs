@@ -1,40 +1,26 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace FleetManager.Models;
-
-public class Asignacion
+namespace FleetManager.Models
 {
-    private object conductor;
-
-    [Key]
-    public int IdAsignacion { get; set; }
-
-    [Required]
-    public int IdVehiculo { get; set; } // Relación con Vehículo
-
-    [Required]
-    public int IdConductor { get; set; } // Relación con Conductor
-
-    [Required(ErrorMessage = "La fecha de inicio es obligatoria.")]
-    public DateTime FechaInicio { get; set; }
-
-    public DateTime? FechaFin { get; set; } // Fecha fin puede ser opcional.
-    public object? Vehiculo { get; internal set; }
-
-    public Asignacion(object? vehiculo)
+    public class Asignacion
     {
-        Vehiculo = vehiculo;
-    }
+        [Key]
+        public int IdAsignacion { get; set; }
 
-    public object GetConductor()
-    {
-        return conductor;
-    }
+        [Required]
+        public int IdVehiculo { get; set; } // Relación con Vehiculo
+        public Vehiculo Vehiculo { get; set; } // Navegación pública
 
-    internal void SetConductor(object value)
-    {
-        conductor = value;
-    }
+        [Required]
+        public int IdConductor { get; set; } // Relación con Conductor
+        public Conductor Conductor { get; set; } // Navegación pública
 
-    //IdVehiculo y IdConductor representan relaciones con las tablas respectivas.
+        [Required(ErrorMessage = "La fecha de inicio es obligatoria.")]
+        public DateTime FechaInicio { get; set; }
+
+        public DateTime? FechaFin { get; set; } // Fecha fin puede ser opcional.      
+        
+
+        //IdVehiculo y IdConductor representan relaciones con las tablas respectivas.
+    }
 }

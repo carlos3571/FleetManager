@@ -4,6 +4,7 @@ namespace FleetManager.Models
 {
     public class Vehiculo
     {
+        [Key]
         public int IdVehiculo { get; set; }
 
         [Required(ErrorMessage = "La placa es obligatoria.")]
@@ -21,6 +22,9 @@ namespace FleetManager.Models
 
         [Range(0, int.MaxValue, ErrorMessage = "El kilometraje no puede ser negativo.")]
         public int Kilometraje { get; set; }
+
+        public ICollection<Asignacion> Asignaciones { get; set; }
+
     }
 }
 

@@ -4,6 +4,7 @@ namespace FleetManager.Models
 {
     public class Mantenimiento
     {
+        [Key]
         public int IdMantenimiento { get; set; }
 
         [Required]

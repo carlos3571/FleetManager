@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using FleetManager.Models;
+﻿using FleetManager.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace FleetManager.Data
 {
@@ -10,59 +10,133 @@ namespace FleetManager.Data
         {
         }
 
-        // DbSets para las entidades
+        // DbSet para las entidades
+        public DbSet<Mantenimiento> Mantenimientos { get; set; }
+        public DbSet<Asignacion> Asignaciones { get; set; }
         public DbSet<Vehiculo> Vehiculos { get; set; }
         public DbSet<Conductor> Conductores { get; set; }
-        public DbSet<Asignacion> Asignaciones { get; set; }
-        public DbSet<Mantenimiento> Mantenimientos { get; set; }
-        public DbSet<RegistroUso> RegistrosUso { get; set; }
+        public DbSet<RegistroUso> RegistroUsos { get; set; }
 
-        // Configuraciones adicionales
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Configuración para Vehiculo
-            modelBuilder.Entity<Vehiculo>()
-                .HasKey(v => v.IdVehiculo);
+            // Configuración para la entidad Conductor
+            modelBuilder.Entity<Conductor>(entity =>
+            {
+                entity.HasKey(c => c.IdConductor);
 
-            // Configuración para Conductor
-            modelBuilder.Entity<Conductor>()
-                .HasKey(c => c.IdConductor);
+                entity.Property(c => c.Nombre)
+                    .IsRequired()
+                    .HasMaxLength(50);
 
-            // Configuración para Asignacion
-            modelBuilder.Entity<Asignacion>()
-                .HasKey(a => a.IdAsignacion);
-            modelBuilder.Entity<Asignacion>()
-                .HasOne(a => a.Vehiculo)
-                .WithMany() // Opcional: especifica si deseas relación de muchos a uno o uno a uno
-                .HasForeignKey(a => a.IdVehiculo)
-                .OnDelete(DeleteBehavior.Cascade);
-                 // Configuración para Mantenimiento
-            modelBuilder.Entity<Mantenimiento>()
-                .HasKey(m => m.IdMantenimiento);
-            modelBuilder.Entity<Mantenimiento>()
-                .HasOne(m => m.Vehiculo)
-                .WithMany() // Relación opcional
-                .HasForeignKey(m => m.IdVehiculo)
-                .OnDelete(DeleteBehavior.Cascade);
+                entity.Property(c => c.Apellido)
+                    .IsRequired()
+                    .HasMaxLength(50);
 
-            // Configuración para RegistroUso
-            modelBuilder.Entity<RegistroUso>()
-                .HasKey(r => r.IdRegistro);
-            modelBuilder.Entity<RegistroUso>()
-                .HasOne(r => r.Vehiculo)
-                .WithMany() // Relación opcional
-                .HasForeignKey(r => r.IdVehiculo)
-                .OnDelete(DeleteBehavior.Cascade);
+                entity.Property(c => c.LicenciaConduccion)
+                    .IsRequired()
+                    .HasMaxLength(20);
 
-                // modelBuilder.Entity<Asignacion>()
-               //  .HasOne(a => a.Conductor)
-               //.WithMany(static c => c.Asignaciones)
-               //.HasForeignKey(a => a.IdConductor)
-              // .OnDelete(DeleteBehavior.Cascade);
+                entity.Property(c => c.Telefono)
+                    .HasMaxLength(15);
+
+                entity.Property(c => c.Direccion)
+                    .HasMaxLength(100);
+
+                entity.HasMany(c => c.Asignaciones)
+                    .WithOne(a => a.Conductor)
+                    .HasForeignKey(a => a.IdConductor)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+            // Configuración para la entidad Asignacion
+            modelBuilder.Entity<Asignacion>(entity =>
+            {
+                entity.HasKey(a => a.IdAsignacion);
+
+                // Relación con Vehiculo
+                entity.HasOne(a => a.Vehiculo)
+                    .WithMany(v => v.Asignaciones)
+                    .HasForeignKey(a => a.IdVehiculo)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                // Relación con Conductor
+                entity.HasOne(a => a.Conductor)
+                    .WithMany(c => c.Asignaciones)
+                    .HasForeignKey(a => a.IdConductor)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+            // Configuración para la entidad Vehiculo
+            modelBuilder.Entity<Vehiculo>(entity =>
+            {
+                entity.HasKey(v => v.IdVehiculo);
+
+                entity.Property(v => v.Placa)
+                    .IsRequired()
+                    .HasMaxLength(10);
+
+                entity.Property(v => v.Marca)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(v => v.Modelo)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(v => v.Año)
+                    .IsRequired();
+
+                entity.Property(v => v.Kilometraje)
+                    .IsRequired();
+
+                entity.HasMany(v => v.Asignaciones)
+                    .WithOne(a => a.Vehiculo)
+                    .HasForeignKey(a => a.IdVehiculo)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+            // Configuración para la entidad Mantenimiento
+            modelBuilder.Entity<Mantenimiento>(entity =>
+            {
+                entity.HasKey(m => m.IdMantenimiento);
+
+                entity.HasOne(m => m.Vehiculo)
+                    .WithMany()
+                    .HasForeignKey(m => m.IdVehiculo)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                entity.Property(m => m.Descripcion)
+                    .IsRequired();
+
+                entity.Property(m => m.FechaMantenimiento)
+                    .IsRequired();
+
+                entity.Property(m => m.Costo)
+                    .IsRequired()
+                    .HasColumnType("decimal(10, 2)");
+            });
+
+            // Configuración para la entidad RegistroUso
+            modelBuilder.Entity<RegistroUso>(entity =>
+            {
+                entity.HasKey(r => r.IdRegistro);
+
+                entity.HasOne(r => r.Vehiculo)
+                    .WithMany()
+                    .HasForeignKey(r => r.IdVehiculo)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                entity.Property(r => r.Fecha)
+                    .IsRequired();
+
+                entity.Property(r => r.KilometrajeInicio)
+                    .IsRequired();
+
+                entity.Property(r => r.KilometrajeFin)
+                    .IsRequired();
+            });
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
-
-
-
-

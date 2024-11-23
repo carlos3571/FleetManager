@@ -4,6 +4,7 @@ namespace FleetManager.Models
 {
     public class RegistroUso
     {
+        [Key]
         public int IdRegistro { get; set; }
 
         [Required]
