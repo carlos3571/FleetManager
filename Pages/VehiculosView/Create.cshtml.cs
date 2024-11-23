@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using FleetManager.Data;
 using FleetManager.Models;
 
-namespace FleetManager.Pages.Vehiculos
+namespace FleetManager.Pages.VehiculosView
 {
     public class CreateModel : PageModel
     {
@@ -11,7 +11,7 @@ namespace FleetManager.Pages.Vehiculos
 
         public CreateModel(FleetManagerContext context)
         {
-            _context = context;
+            _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
         [BindProperty]
@@ -19,6 +19,8 @@ namespace FleetManager.Pages.Vehiculos
 
         public IActionResult OnGet()
         {
+            // Inicializar la propiedad para evitar problemas de referencia nula
+            Vehiculo = new Vehiculo();
             return Page();
         }
 
@@ -29,8 +31,17 @@ namespace FleetManager.Pages.Vehiculos
                 return Page();
             }
 
-            _context.Vehiculos.Add(Vehiculo);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Vehiculos.Add(Vehiculo);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                // Manejar errores al guardar
+                ModelState.AddModelError(string.Empty, $"Error al guardar el vehículo: {ex.Message}");
+                return Page();
+            }
 
             return RedirectToPage("Index");
         }

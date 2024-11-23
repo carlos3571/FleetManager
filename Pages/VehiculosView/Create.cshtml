@@ -1,10 +1,10 @@
 ﻿@page
-@model FleetManager.Pages.Vehiculos.EditModel
+@model FleetManager.Pages.VehiculosView.CreateModel
 @{
-    ViewData["Title"] = "Editar Vehículo";
+    ViewData["Title"] = "Agregar Vehículo";
 }
 
-<h1>Editar Vehículo</h1>
+<h1>Agregar Vehículo</h1>
 
 <form method="post">
     <div class="form-group">
@@ -23,8 +23,16 @@
         <span asp-validation-for="Vehiculo.Modelo" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <input type="submit" value="Guardar" class="btn btn-primary" />
-        <a asp-page="Index" class="btn btn-secondary">Cancelar</a>
+        <label asp-for="Vehiculo.Año" class="control-label"></label>
+        <input asp-for="Vehiculo.Año" class="form-control" />
+        <span asp-validation-for="Vehiculo.Año" class="text-danger"></span>
     </div>
+    <div class="form-group">
+        <label asp-for="Vehiculo.Kilometraje" class="control-label"></label>
+        <input asp-for="Vehiculo.Kilometraje" class="form-control" />
+        <span asp-validation-for="Vehiculo.Kilometraje" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a asp-page="Index" class="btn btn-secondary">Cancelar</a>
 </form>
 

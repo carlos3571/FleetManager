@@ -1,9 +1,9 @@
-using FleetManager.Data;
-using FleetManager.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using FleetManager.Data;
+using FleetManager.Models;
 
-namespace FleetManager.Pages.Vehiculos
+namespace FleetManager.Pages.RegistrosUso
 {
     public class IndexModel : PageModel
     {
@@ -14,11 +14,13 @@ namespace FleetManager.Pages.Vehiculos
             _context = context;
         }
 
-        public IList<Vehiculo> Vehiculos { get; set; } = new List<Vehiculo>();
+        public IList<RegistroUso> RegistrosUso { get; set; }
 
         public async Task OnGetAsync()
         {
-            Vehiculos = await _context.Vehiculos.ToListAsync();
+            RegistrosUso = await _context.RegistroUsos
+                .Include(r => r.Vehiculo) // Incluye la relación con Vehículo
+                .ToListAsync();
         }
     }
 }

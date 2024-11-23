@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using FleetManager.Data;
 using FleetManager.Models;
 
-namespace FleetManager.Pages.Vehiculos
+namespace FleetManager.Pages.VehiculosView
 {
     public class DeleteModel : PageModel
     {

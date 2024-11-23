@@ -35,7 +35,7 @@ namespace FleetManager.Pages.RegistrosUso
                 return Page();
             }
 
-            _context.RegistrosUso.Add(RegistroUso);
+            _context.RegistroUsos.Add(RegistroUso);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("Index");

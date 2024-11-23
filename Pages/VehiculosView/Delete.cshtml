@@ -1,27 +1,28 @@
 ﻿@page
-@model FleetManager.Pages.Vehiculos.DeleteModel
+@model FleetManager.Pages.VehiculosView.DeleteModel
 @{
     ViewData["Title"] = "Eliminar Vehículo";
 }
 
 <h1>Eliminar Vehículo</h1>
 
-<p>¿Estás seguro que deseas eliminar este vehículo?</p>
-
+<h4>¿Estás seguro de que deseas eliminar este vehículo?</h4>
 <div>
     <dl class="row">
         <dt class="col-sm-2">Placa</dt>
         <dd class="col-sm-10">@Model.Vehiculo.Placa</dd>
-
         <dt class="col-sm-2">Marca</dt>
         <dd class="col-sm-10">@Model.Vehiculo.Marca</dd>
-
         <dt class="col-sm-2">Modelo</dt>
         <dd class="col-sm-10">@Model.Vehiculo.Modelo</dd>
+        <dt class="col-sm-2">Año</dt>
+        <dd class="col-sm-10">@Model.Vehiculo.Año</dd>
+        <dt class="col-sm-2">Kilometraje</dt>
+        <dd class="col-sm-10">@Model.Vehiculo.Kilometraje</dd>
     </dl>
 </div>
 
 <form method="post">
-    <input type="submit" value="Eliminar" class="btn btn-danger" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
     <a asp-page="Index" class="btn btn-secondary">Cancelar</a>
 </form>

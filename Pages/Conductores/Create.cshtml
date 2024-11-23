@@ -1,10 +1,10 @@
 ﻿@page
-@model FleetManager.Pages.Conductor.EditModel
+@model FleetManager.Pages.Conductores.CreateModel
 @{
-    ViewData["Title"] = "Editar Conductor";
+    ViewData["Title"] = "Agregar Conductor";
 }
 
-<h1>Editar Conductor</h1>
+<h1>Agregar Conductor</h1>
 
 <form method="post">
     <div class="form-group">
@@ -32,7 +32,6 @@
         <input asp-for="Conductor.Direccion" class="form-control" />
         <span asp-validation-for="Conductor.Direccion" class="text-danger"></span>
     </div>
-    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+    <button type="submit" class="btn btn-primary">Guardar</button>
     <a asp-page="Index" class="btn btn-secondary">Cancelar</a>
 </form>
-

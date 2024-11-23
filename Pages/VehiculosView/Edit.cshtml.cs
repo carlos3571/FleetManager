@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FleetManager.Data;
 using FleetManager.Models;
 
-namespace FleetManager.Pages.Vehiculos
+namespace FleetManager.Pages.VehiculosView
 {
     public class EditModel : PageModel
     {

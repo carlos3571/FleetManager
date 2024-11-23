@@ -1,5 +1,5 @@
 ﻿@page
-@model FleetManager.Pages.Vehiculo.IndexModel
+@model FleetManager.Pages.VehiculosView.IndexModel
 @{
     ViewData["Title"] = "Lista de Vehículos";
 }
@@ -7,15 +7,17 @@
 <h1>Lista de Vehículos</h1>
 
 <p>
-    <a asp-page="Create" class="btn btn-primary">Crear Nuevo Vehículo</a>
+    <a class="btn btn-primary" asp-page="Create">Agregar Nuevo Vehículo</a>
 </p>
 
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
             <th>Placa</th>
             <th>Marca</th>
             <th>Modelo</th>
+            <th>Año</th>
+            <th>Kilometraje</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -26,9 +28,12 @@
                 <td>@vehiculo.Placa</td>
                 <td>@vehiculo.Marca</td>
                 <td>@vehiculo.Modelo</td>
+                <td>@vehiculo.Año</td>
+                <td>@vehiculo.Kilometraje</td>
                 <td>
                     <a asp-page="Edit" asp-route-id="@vehiculo.IdVehiculo" class="btn btn-warning">Editar</a>
                     <a asp-page="Delete" asp-route-id="@vehiculo.IdVehiculo" class="btn btn-danger">Eliminar</a>
+                    <a asp-page="Details" asp-route-id="@vehiculo.IdVehiculo" class="btn btn-info">Detalles</a>
                 </td>
             </tr>
         }

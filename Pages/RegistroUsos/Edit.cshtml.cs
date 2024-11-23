@@ -28,7 +28,7 @@ namespace FleetManager.Pages.RegistrosUso
                 return NotFound();
             }
 
-            RegistroUso = await _context.RegistrosUso
+            RegistroUso = await _context.RegistroUsos      
                 .Include(r => r.Vehiculo)
                 .FirstOrDefaultAsync(r => r.IdRegistro == id);
 
@@ -49,7 +49,7 @@ namespace FleetManager.Pages.RegistrosUso
                 return Page();
             }
 
-            var registroExistente = await _context.RegistrosUso.FindAsync(RegistroUso.IdRegistro);
+            var registroExistente = await _context.RegistroUsos.FindAsync(RegistroUso.IdRegistro);
 
             if (registroExistente == null)
             {

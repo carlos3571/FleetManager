@@ -11,7 +11,7 @@ namespace FleetManager.Pages.Conductores
 
         public CreateModel(FleetManagerContext context)
         {
-            _context = context;
+            _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
         [BindProperty]
@@ -19,6 +19,8 @@ namespace FleetManager.Pages.Conductores
 
         public IActionResult OnGet()
         {
+            // Inicializar la propiedad para evitar null cuando sea necesario
+            Conductor = new Conductor();
             return Page();
         }
 
@@ -29,11 +31,18 @@ namespace FleetManager.Pages.Conductores
                 return Page();
             }
 
-            _context.Conductores.Add(Conductor);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Conductores.Add(Conductor);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, "Error al guardar el conductor: " + ex.Message);
+                return Page();
+            }
 
             return RedirectToPage("Index");
         }
     }
 }
-
